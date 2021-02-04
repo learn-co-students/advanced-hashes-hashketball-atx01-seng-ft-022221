@@ -1,4 +1,7 @@
 # Write your code below game_hash
+require 'pry'
+
+
 def game_hash
   {
     home: {
@@ -126,4 +129,100 @@ def game_hash
   }
 end
 
-# Write code here
+def num_points_scored(player_name)
+  game_hash.each do |team, stats|
+    stats[:players].each do |teammate|
+      if teammate[:player_name] == player_name
+        return teammate[:points]
+      end
+    end
+  end
+end
+
+def shoe_size(player_name)
+  game_hash.each do |team, stats|
+    stats[:players].each do |teammate|
+      if teammate[:player_name] == player_name
+        return teammate[:shoe]
+      end
+    end
+  end
+end
+
+def team_colors(team_name)
+  if team_name == game_hash[:home][:team_name]
+    p game_hash[:home][:colors]
+    elsif
+    team_name == game_hash[:away][:team_name]
+    p  game_hash[:away][:colors]
+  end
+end
+
+def team_names
+    game_hash.map do |team, stats|
+      stats[:team_name]
+end
+end
+
+#locate the team 
+#look at each player
+#push each number to an array
+
+
+
+
+def player_numbers(team_name)
+player_numb = []
+  if team_name == game_hash[:home][:team_name]
+    game_hash[:home][:players].each do |key|
+      player_numb<< key[:number]
+    end 
+      elsif team_name == game_hash[:away][:team_name]
+    game_hash[:away][:players].each do |key|
+      player_numb<< key[:number]
+  end
+end
+player_numb
+end
+
+
+#locate a player
+#locate all statistics
+#return statistics in hash
+
+
+def player_stats(players_name)
+  game_hash.each do |key, value|
+    value[:players].each do |name|
+      if players_name == name[:player_name]
+        return name
+      end
+  end
+end
+end
+
+#locate each player 
+#locate each shoe size 
+#find largest shoe size 
+#return that players rebounds 
+
+def big_shoe_rebounds
+  biggest_size = 0 
+  player_with_big_size = ()
+  game_hash.each do |key, value|
+    value[:players].each do |name|
+      if name[:shoe] > biggest_size
+        biggest_size = name[:shoe]
+        player_with_big_size = name
+  end
+  end
+  end
+  player_with_big_size[:rebounds]
+end
+
+
+
+def most_points_scored
+end
+
+
