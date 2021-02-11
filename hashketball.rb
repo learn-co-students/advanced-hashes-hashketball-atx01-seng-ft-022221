@@ -1,4 +1,7 @@
 # Write your code below game_hash
+require 'pry'
+require './hashketball.rb'
+
 def game_hash
   {
     home: {
@@ -127,3 +130,79 @@ def game_hash
 end
 
 # Write code here
+def num_points_scored(player_name)
+  game_hash.each do |key, value|
+    value[:players].each do |element|
+      if player_name == element[:player_name]
+        return element[:points]
+      end
+    end
+  end
+end
+
+def shoe_size(player_name)
+  game_hash.each do |key, value|
+    value[:players].each do |element|
+      if player_name == element[:player_name]
+        return element[:shoe]
+      end
+    end
+  end
+end
+
+def team_colors(team_name)
+  game_hash.each do |key, value|
+    if team_name == value[:team_name]
+      return value[:colors]
+    end
+  end
+end
+
+def team_names
+  teams = ["Brooklyn Nets", "Charlotte Hornets"]
+end
+
+def player_numbers(team_name)
+  jersey_numbers = []
+  game_hash.each do |key, value|
+    if value[:team_name] == team_name
+      value[:players].each do |element|
+        jersey_numbers << element[:number]
+      end
+    end
+  end
+  jersey_numbers
+end
+
+def player_stats(player_name)
+  game_hash.each do |key, value|
+    value[:players].each do |element|
+      if player_name == element[:player_name]
+        return element
+      end
+    end
+  end
+end
+
+def big_shoe_rebounds
+  biggest_shoe = 1 
+  game_hash.each do |key, value|
+    value[:players].each do |element|
+      if element[:shoe] > biggest_shoe
+        biggest_shoe = element[:shoe]
+      end 
+    end
+    value[:players].each do |element|
+      if element[:shoe] == biggest_shoe
+        return element[:rebounds]
+      end
+    end
+  end
+end 
+
+
+
+
+
+
+
